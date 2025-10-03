@@ -1,158 +1,313 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tareas - Base de Datos II</title>
-  <style>
-    * {margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;}
-    body {background-color: #f4f6f9; color: #333; padding: 20px;}
-    header {text-align: center; margin-bottom: 30px;}
-    header h1 {font-size: 2rem; color: #2c3e50;}
-    .contenido {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;}
-    .semana {
-      background: white; border-radius: 15px; padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-    .semana:hover {transform: translateY(-5px);}
-    .semana h2 {font-size: 1.3rem; margin-bottom: 15px; color: #34495e;}
-    .btn {
-      display: inline-block; padding: 10px 15px; border-radius: 8px;
-      text-decoration: none; font-weight: bold; color: white;
-      background-color: #3498db; margin-bottom: 15px; transition: background 0.3s;
-    }
-    .btn:hover {background-color: #2980b9;}
-    .archivos-lista {display: none; list-style: none; padding-left: 0;}
-    .archivos-lista li {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 10px; margin: 5px 0;
-      border: 1px solid #ddd; border-radius: 8px;
-      background: #fafafa;
-    }
-    .archivos-lista li span {flex: 1; margin-right: 10px;}
-    .archivos-lista a {
-      margin-left: 8px; padding: 5px 10px;
-      border-radius: 5px; text-decoration: none; font-size: 0.9rem;
-    }
-    .ver-btn {background: #2ecc71; color: white;}
-    .ver-btn:hover {background: #27ae60;}
-    .download-btn {background: #e67e22; color: white;}
-    .download-btn:hover {background: #d35400;}
-    .icono {font-size: 2rem; margin-bottom: 10px;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tareas - Base de Datos II</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(to right, #0f172a, #1e3a8a); 
+    color: #f8fafc;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== NAVBAR ===== */
+nav.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #0f172a, #1e3a8a);
+    padding: 12px 25px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+nav.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav.navbar .logo img {
+    height: 40px;
+}
+
+nav.navbar .logo span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+nav.navbar .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+nav.navbar .menu a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav.navbar .menu a:hover {
+    color: #38bdf8;
+}
+
+/* ===== CONTENIDO ===== */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+}
+
+.semana {
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.semana:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+}
+
+.icono {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1rem auto;
+    color: #fff;
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+    border: 2px solid #fff;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #f1f5f9;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: linear-gradient(135deg,#38bdf8,#2563eb);
+    color: #fff;
+    margin: 0.3rem;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+/* ===== LISTA ARCHIVOS ===== */
+.archivos-lista {
+    margin-top: 15px;
+    text-align: left;
+    background: rgba(255,255,255,0.07);
+    padding: 12px;
+    border-radius: 10px;
+    display: none;
+}
+
+.archivos-lista li {
+    list-style: none;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.archivos-lista li:last-child {
+    border-bottom: none;
+}
+
+.ver-btn, .download-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 6px;
+    transition: background 0.3s ease;
+}
+
+.ver-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.ver-btn:hover {
+    background: #15803d;
+}
+
+.download-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #1e40af;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(15,23,42,0.9);
+    color: #cbd5e1;
+    margin-top: 2rem;
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>📚 Tareas - Base de Datos II</h1>
-    <p>Selecciona la semana y revisa los archivos disponibles</p>
-  </header>
 
-  <main class="contenido" id="contenido"></main>
+<nav class="navbar">
+  <div class="logo">
+    <img src="img/upla.png" alt="Logo UPLA">
+    <span>UPLA</span>
+  </div>
+  <div class="title">Base de Datos II</div>
+  <div class="menu">
+    <a href="index.html">INICIO</a>
+    <a href="estudiante.html">ESTUDIANTE</a>
+    <a href="docente.html">DOCENTE</a>
+    <a href="tarea.html">TAREAS</a>
+  </div>
+</nav>
 
-  <script>
-    const usuario = "GuadalupeEmanuel";
-    const repo = "25.github.io";
-    const semanas = 16;
-    const contenido = document.getElementById('contenido');
-    const iconos = ["📘","📗","📙","📕","📖","📝","📂","📊","💾","📡","🔐","⚙️","🖥️","📑","📋","📦"];
+<main id="contenido"></main>
 
-    for(let i=1;i<=semanas;i++){
-      const divSemana = document.createElement('div');
-      divSemana.className='semana';
+<footer>
+  <p>© 2025 - Presentación Académica</p>
+</footer>
 
-      const icono = document.createElement('div');
-      icono.className='icono';
-      icono.textContent=iconos[i-1];
-      divSemana.appendChild(icono);
+<script>
+const usuario = "GuadalupeEmanuel";
+const repo = "BaseDeDatos2025.github.io"; // ✅ Repositorio actualizado
+const semanas = 16;
+const contenido = document.getElementById('contenido');
+const iconos = ["📘","📗","📙","📕","📖","📝","📂","📊","💾","📡","🔐","⚙️","🖥️","📑","📋","📦"];
 
-      const h2 = document.createElement('h2');
-      h2.textContent=`Semana ${i}`;
-      divSemana.appendChild(h2);
+for(let i=1;i<=semanas;i++){
+    const divSemana = document.createElement('div');
+    divSemana.className='semana';
 
-      const btnArchivos = document.createElement('a');
-      btnArchivos.className='btn';
-      btnArchivos.textContent="📄 Ver archivos";
-      btnArchivos.href="#";
-      btnArchivos.addEventListener("click", function(e){
+    const icono = document.createElement('div');
+    icono.className='icono';
+    icono.textContent=iconos[i-1];
+    divSemana.appendChild(icono);
+
+    const h2 = document.createElement('h2');
+    h2.textContent=`Semana ${i}`;
+    divSemana.appendChild(h2);
+
+    const btnArchivos = document.createElement('a');
+    btnArchivos.className='btn';
+    btnArchivos.textContent="📄 Ver archivos";
+    btnArchivos.href="#";
+    btnArchivos.addEventListener("click", function(e){
         e.preventDefault();
         toggleArchivos(i);
-      });
-      divSemana.appendChild(btnArchivos);
+    });
+    divSemana.appendChild(btnArchivos);
 
-      const listaArchivos = document.createElement('ul');
-      listaArchivos.className="archivos-lista";
-      listaArchivos.id = `archivos-semana-${i}`;
-      divSemana.appendChild(listaArchivos);
+    const listaArchivos = document.createElement('ul');
+    listaArchivos.className="archivos-lista";
+    listaArchivos.id = `archivos-semana-${i}`;
+    divSemana.appendChild(listaArchivos);
 
-      contenido.appendChild(divSemana);
-    }
+    contenido.appendChild(divSemana);
+}
 
-    function toggleArchivos(semana){
-      const lista = document.getElementById(`archivos-semana-${semana}`);
-      if(lista.style.display === "block"){
+function toggleArchivos(semana){
+    const lista = document.getElementById(`archivos-semana-${semana}`);
+    if(lista.style.display === "block"){
         lista.style.display = "none";
-      } else {
+    } else {
         mostrarArchivos(semana);
-      }
     }
+}
 
-    function mostrarArchivos(semana){
-      const lista = document.getElementById(`archivos-semana-${semana}`);
-      lista.style.display = "block";
-      lista.innerHTML = "Cargando archivos...";
+function mostrarArchivos(semana){
+    const lista = document.getElementById(`archivos-semana-${semana}`);
+    lista.style.display = "block";
+    lista.innerHTML = "Cargando archivos...";
 
-      fetch(`https://api.github.com/repos/${usuario}/${repo}/contents/Semana${semana}`)
-      .then(response => response.json())
-      .then(data => {
+    fetch(`https://api.github.com/repos/${usuario}/${repo}/contents/Semana${semana}`)
+    .then(response => response.json())
+    .then(data => {
         lista.innerHTML = "";
         if(Array.isArray(data)){
-          data.forEach(archivo => {
-            const li = document.createElement("li");
+            data.forEach(archivo => {
+                const li = document.createElement("li");
 
-            const nombre = document.createElement("span");
-            nombre.textContent = archivo.name;
+                const nombre = document.createElement("span");
+                nombre.textContent = archivo.name;
 
-            const acciones = document.createElement("div");
+                const acciones = document.createElement("div");
 
-            // 🔹 URL de GitHub Pages
-            const baseUrl = `https://${usuario}.github.io/${repo}/Semana${semana}/${archivo.name}`;
+                const verBtn = document.createElement("a");
+                verBtn.href = archivo.download_url;
+                verBtn.className = "ver-btn";
+                verBtn.target = "_blank";
+                verBtn.textContent = "Ver";
 
-            // Botón Ver (usamos Google Docs Viewer si es PDF/Word/Excel/PPT)
-            const verBtn = document.createElement("a");
-            if (archivo.name.endsWith(".pdf") || archivo.name.endsWith(".docx") || archivo.name.endsWith(".pptx") || archivo.name.endsWith(".xlsx")) {
-              verBtn.href = `https://docs.google.com/viewer?url=${baseUrl}&embedded=true`;
-            } else {
-              verBtn.href = baseUrl;
-            }
-            verBtn.className = "ver-btn";
-            verBtn.target = "_blank";
-            verBtn.textContent = "Ver";
+                const downloadBtn = document.createElement("a");
+                downloadBtn.href = archivo.download_url;
+                downloadBtn.className = "download-btn";
+                downloadBtn.textContent = "Descargar";
+                downloadBtn.download = archivo.name;
 
-            // Botón Descargar
-            const downloadBtn = document.createElement("a");
-            downloadBtn.href = archivo.download_url;
-            downloadBtn.className = "download-btn";
-            downloadBtn.textContent = "Descargar";
-            downloadBtn.download = archivo.name;
+                acciones.appendChild(verBtn);
+                acciones.appendChild(downloadBtn);
 
-            acciones.appendChild(verBtn);
-            acciones.appendChild(downloadBtn);
-
-            li.appendChild(nombre);
-            li.appendChild(acciones);
-            lista.appendChild(li);
-          });
+                li.appendChild(nombre);
+                li.appendChild(acciones);
+                lista.appendChild(li);
+            });
         } else {
-          lista.innerHTML = "No hay archivos o carpeta no encontrada.";
+            lista.innerHTML = "No hay archivos o carpeta no encontrada.";
         }
-      })
-      .catch(err => {
+    })
+    .catch(err => {
         lista.innerHTML = "Error al cargar archivos.";
         console.error(err);
-      });
-    }
-  </script>
+    });
+}
+</script>
+
 </body>
 </html>
+
+
 

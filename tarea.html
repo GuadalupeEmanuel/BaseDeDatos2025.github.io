@@ -269,34 +269,39 @@ function mostrarArchivos(semana){
         lista.innerHTML = "";
         if(Array.isArray(data)){
             data.forEach(archivo => {
-                const li = document.createElement("li");
+                // ✅ Solo mostrar archivos PDF
+                if(archivo.name.toLowerCase().endsWith(".pdf")){
+                    const li = document.createElement("li");
 
-                const nombre = document.createElement("span");
-                nombre.textContent = archivo.name;
+                    const nombre = document.createElement("span");
+                    nombre.textContent = archivo.name;
 
-                const acciones = document.createElement("div");
+                    const acciones = document.createElement("div");
 
-                const verBtn = document.createElement("a");
-                verBtn.href = archivo.download_url;
-                verBtn.className = "ver-btn";
-                verBtn.target = "_blank";
-                verBtn.textContent = "Ver";
+                    // Botón Ver PDF (abre en nueva pestaña)
+                    const verBtn = document.createElement("a");
+                    verBtn.href = archivo.download_url;
+                    verBtn.className = "ver-btn";
+                    verBtn.target = "_blank"; // 🔥 abre en nueva pestaña
+                    verBtn.textContent = "Ver PDF";
 
-                const downloadBtn = document.createElement("a");
-                downloadBtn.href = archivo.download_url;
-                downloadBtn.className = "download-btn";
-                downloadBtn.textContent = "Descargar";
-                downloadBtn.download = archivo.name;
+                    // Botón Descargar
+                    const downloadBtn = document.createElement("a");
+                    downloadBtn.href = archivo.download_url;
+                    downloadBtn.className = "download-btn";
+                    downloadBtn.textContent = "Descargar";
+                    downloadBtn.download = archivo.name;
 
-                acciones.appendChild(verBtn);
-                acciones.appendChild(downloadBtn);
+                    acciones.appendChild(verBtn);
+                    acciones.appendChild(downloadBtn);
 
-                li.appendChild(nombre);
-                li.appendChild(acciones);
-                lista.appendChild(li);
+                    li.appendChild(nombre);
+                    li.appendChild(acciones);
+                    lista.appendChild(li);
+                }
             });
         } else {
-            lista.innerHTML = "No hay archivos o carpeta no encontrada.";
+            lista.innerHTML = "No hay archivos PDF o carpeta no encontrada.";
         }
     })
     .catch(err => {

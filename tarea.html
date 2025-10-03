@@ -275,18 +275,12 @@ function mostrarArchivos(semana){
 
                 const acciones = document.createElement("div");
 
+                // URL para ver desde GitHub Pages
+                const baseUrl = `https://${usuario}.github.io/${repo}/Semana${semana}/${archivo.name}`;
+
                 // Botón Ver
                 const verBtn = document.createElement("a");
-                if (
-                    archivo.name.endsWith(".pdf") || 
-                    archivo.name.endsWith(".docx") || 
-                    archivo.name.endsWith(".pptx") || 
-                    archivo.name.endsWith(".xlsx")
-                ) {
-                    verBtn.href = `https://docs.google.com/viewer?url=${archivo.download_url}&embedded=true`;
-                } else {
-                    verBtn.href = archivo.download_url;
-                }
+                verBtn.href = baseUrl;
                 verBtn.className = "ver-btn";
                 verBtn.target = "_blank";
                 verBtn.textContent = "Ver";

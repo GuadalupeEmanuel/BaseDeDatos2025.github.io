@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - Universidad Peruana Los Andes</title>
+  <style>
+    /* ===== Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ===== Barra de navegación ===== */
+    nav.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #000000);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+    .navbar:hover {
+      background: linear-gradient(90deg, #000000);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      height: 45px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.1);
+    }
+
+    .logo span {
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .menu {
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: rgba(255,255,255,0.2);
+      color: #ffd700;
+    }
+
+    /* ===== Sección principal ===== */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .container img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .container img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .texto {
+      flex: 1;
+      min-width: 300px;
+      text-align: justify;
+      padding: 10px;
+    }
+
+    .texto h2 {
+      color: #00008b;
+      margin-bottom: 15px;
+      font-size: 26px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .texto p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* ===== Responsividad ===== */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 30px;
+      }
+
+      .menu {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .container img {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="img/upla.png" alt="Logo UPLA">
+      <span>UPLA</span>
+    </div>
+    <div class="title">Base de Datos II</div>
+    <div class="menu">
+      <a href="index.html">INICIO</a>
+      <a href="estudiante.html">ESTUDIANTE</a>
+      <a href="docente.html">DOCENTE</a>
+      <a href="tarea.html">TAREAS</a>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <img src="img/ingenieria.png" alt="Ingeniería">
+    <div class="texto">
+      <h2>Universidad Peruana Los Andes</h2>
+      <p>
+        La Universidad Peruana Los Andes fue creada el 30 de diciembre de 1983 por Ley N° 23757 del Congreso de la República, 
+        estableciendo como sede central la ciudad de Huancayo, Región Junín. 
+        Asimismo, su organización y funcionamiento están sujetos a la Ley Universitaria N° 30220.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

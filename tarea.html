@@ -4,188 +4,155 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tareas - Base de Datos II</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
+/* ===== GENERAL ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(to right, #0f172a, #1e3a8a); 
-    color: #f8fafc;
-    margin: 0;
-    padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0a192f, #020617 80%);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ===== NAVBAR ===== */
 nav.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #0f172a, #1e3a8a);
-    padding: 12px 25px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10,25,47,0.9);
+  padding: 15px 40px;
+  border-bottom: 2px solid rgba(255,215,0,0.3);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
-
-nav.navbar .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+nav .logo { display: flex; align-items: center; gap: 10px; }
+nav .logo img { height: 45px; }
+nav .logo span {
+  font-weight: 700; color: #FFD700;
+  font-family: 'Playfair Display', serif; font-size: 1.2rem;
 }
-
-nav.navbar .logo img {
-    height: 40px;
+nav .title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; color: #fff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.5);
 }
-
-nav.navbar .logo span {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #fff;
+nav .menu a {
+  margin-left: 25px; text-decoration: none; color: #f1f5f9;
+  font-weight: 600; transition: color 0.3s ease;
 }
+nav .menu a:hover { color: #FFD700; }
 
-nav.navbar .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
-}
-
-nav.navbar .menu a {
-    margin-left: 20px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-nav.navbar .menu a:hover {
-    color: #38bdf8;
-}
-
-/* ===== CONTENIDO ===== */
+/* ===== MAIN ===== */
 main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.8rem;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem; max-width: 1200px; margin: auto;
 }
-
-.semana {
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    text-align: center;
-    backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,215,0,0.2);
+  border-radius: 20px; padding: 2rem; text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(255,215,0,0.1);
+  transition: all 0.4s ease;
 }
-
-.semana:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 35px rgba(255,215,0,0.25);
 }
-
-.icono {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin: 0 auto 1rem auto;
-    color: #fff;
-    background: linear-gradient(135deg,#2563eb,#1d4ed8);
-    border: 2px solid #fff;
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; color: #FFD700; margin-bottom: 10px;
 }
-
-h2 {
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #f1f5f9;
-}
-
-/* ===== BOTONES ===== */
+.card p { color: #cbd5e1; font-size: 0.95rem; margin-bottom: 20px; }
 .btn {
-    display: inline-block;
-    padding: 0.7rem 1.2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    background: linear-gradient(135deg,#38bdf8,#2563eb);
-    color: #fff;
-    margin: 0.3rem;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  background: linear-gradient(90deg, #FFD700, #facc15);
+  color: #111; padding: 10px 20px;
+  border-radius: 8px; font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(255,215,0,0.4);
+  transition: all 0.3s ease;
 }
-
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+  background: linear-gradient(90deg, #facc15, #FFD700);
+  box-shadow: 0 0 18px rgba(255,215,0,0.6);
+  transform: translateY(-3px);
 }
 
-/* ===== LISTA ARCHIVOS ===== */
-.archivos-lista {
-    margin-top: 15px;
-    text-align: left;
-    background: rgba(255,255,255,0.07);
-    padding: 12px;
-    border-radius: 10px;
-    display: none;
+/* ===== MODAL ===== */
+.modal {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex; justify-content: center; align-items: center;
+  visibility: hidden; opacity: 0; transition: all 0.3s ease;
 }
-
-.archivos-lista li {
-    list-style: none;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+.modal.active { visibility: visible; opacity: 1; }
+.modal-content {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,215,0,0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 20px; padding: 2rem 3rem;
+  text-align: center; width: 90%; max-width: 500px;
+  box-shadow: 0 0 25px rgba(255,215,0,0.3);
+  animation: aparecer 0.4s ease;
 }
-
-.archivos-lista li:last-child {
-    border-bottom: none;
+@keyframes aparecer {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
-
-.ver-btn, .download-btn {
-    padding: 6px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-left: 6px;
-    transition: background 0.3s ease;
+.modal h2 {
+  color: #FFD700; margin-bottom: 1.2rem;
+  font-family: 'Playfair Display', serif;
 }
-
+.link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,215,0,0.15);
+  border: 1px solid rgba(255,215,0,0.3);
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 15px;
+  margin: 10px 0;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.link:hover { background: rgba(255,215,0,0.3); }
 .ver-btn {
-    background: #16a34a;
-    color: white;
+  background: #FFD700;
+  color: #111;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
 }
-
-.ver-btn:hover {
-    background: #15803d;
+.ver-btn:hover { background: #facc15; }
+.close-btn {
+  margin-top: 20px;
+  background: #FFD700;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
-
-.download-btn {
-    background: #2563eb;
-    color: white;
-}
-
-.download-btn:hover {
-    background: #1e40af;
-}
+.close-btn:hover { background: #facc15; }
 
 /* ===== FOOTER ===== */
 footer {
-    text-align: center;
-    padding: 1.5rem;
-    background: rgba(15,23,42,0.9);
-    color: #cbd5e1;
-    margin-top: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  color: #9ca3af;
+  background: rgba(15,23,42,0.9);
+  border-top: 1px solid rgba(255,215,0,0.2);
 }
 </style>
 </head>
@@ -207,112 +174,96 @@ footer {
 
 <main id="contenido"></main>
 
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2 id="modal-title">Semana 1</h2>
+    <div id="modal-links"></div>
+    <button class="close-btn" onclick="cerrarModal()">Cerrar</button>
+  </div>
+</div>
+
 <footer>
-  <p>© 2025 - Presentación Académica</p>
+  <p>© 2025 - Presentación Académica UPLA</p>
 </footer>
 
 <script>
-const usuario = "GuadalupeEmanuel";
-const repo = "BaseDeDatos2025.github.io"; // ✅ Repositorio actualizado
-const semanas = 16;
-const contenido = document.getElementById('contenido');
-const iconos = ["📘","📗","📙","📕","📖","📝","📂","📊","💾","📡","🔐","⚙️","🖥️","📑","📋","📦"];
+const contenido = document.getElementById("contenido");
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modal-title");
+const modalLinks = document.getElementById("modal-links");
 
-for(let i=1;i<=semanas;i++){
-    const divSemana = document.createElement('div');
-    divSemana.className='semana';
+for (let i = 1; i <= 16; i++) {
+  const card = document.createElement("div");
+  card.className = "card";
 
-    const icono = document.createElement('div');
-    icono.className='icono';
-    icono.textContent=iconos[i-1];
-    divSemana.appendChild(icono);
+  const h3 = document.createElement("h3");
+  h3.textContent = `📅 Semana ${i}`;
+  card.appendChild(h3);
 
-    const h2 = document.createElement('h2');
-    h2.textContent=`Semana ${i}`;
-    divSemana.appendChild(h2);
+  const p = document.createElement("p");
+  p.textContent = i === 1 ? "Informe Técnico Comparativo y Manual de GitHub" :
+                 i === 2 ? "Actividades de la semana 2" :
+                 `Material de la semana ${i}`;
+  card.appendChild(p);
 
-    const btnArchivos = document.createElement('a');
-    btnArchivos.className='btn';
-    btnArchivos.textContent="📄 Ver archivos";
-    btnArchivos.href="#";
-    btnArchivos.addEventListener("click", function(e){
-        e.preventDefault();
-        toggleArchivos(i);
-    });
-    divSemana.appendChild(btnArchivos);
+  const btn = document.createElement("a");
+  btn.href = "#";
+  btn.className = "btn";
+  btn.textContent = "📂 Ver archivos";
+  btn.onclick = () => abrirModal(i);
+  card.appendChild(btn);
 
-    const listaArchivos = document.createElement('ul');
-    listaArchivos.className="archivos-lista";
-    listaArchivos.id = `archivos-semana-${i}`;
-    divSemana.appendChild(listaArchivos);
-
-    contenido.appendChild(divSemana);
+  contenido.appendChild(card);
 }
 
-function toggleArchivos(semana){
-    const lista = document.getElementById(`archivos-semana-${semana}`);
-    if(lista.style.display === "block"){
-        lista.style.display = "none";
-    } else {
-        mostrarArchivos(semana);
-    }
+function abrirModal(semana) {
+  modal.classList.add("active");
+  modalTitle.textContent = `📅 Semana ${semana}`;
+  modalLinks.innerHTML = "";
+
+  if (semana === 1) {
+    agregarLink("Informe Técnico", "https://www.canva.com/design/DAG1WKHd910/sQDW3EpirIgYvmta_kHmnA/edit?utm_content=DAG1WKHd910&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
+    agregarLink("Manual: Creación de una cuenta en GitHub", "https://www.canva.com/design/DAGz_GtSbDQ/yBTu8udGORMygb7dX31IJw/edit?utm_content=DAGz_GtSbDQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
+    agregarLink("Manual para subir la página web a GitHub", "https://docs.google.com/document/d/1Q4poIvhRWpXWBrSTntL0Jv5B9iFDGCQIJ08c5xz5hIE/edit?usp=sharing");
+  } 
+  else if (semana === 2) {
+    agregarLink("EJEMPLO 1", "https://www.canva.com/design/DAG2b8bBGgU/P1lMbiBvXuxtsNin_Lp9Eg/edit?utm_content=DAG2b8bBGgU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
+    agregarLink("Manuel SQL SERVER", "https://docs.google.com/document/d/1qKfcU1gmi8FlZA5RnL5gQK2a32gsbEv3I43viwLIfiM/edit?usp=sharing");
+  } 
+    else if (semana === 3) {
+    agregarLink("Cuadro Conparativo", "https://docs.google.com/document/d/1zvKw2c6TN8t5Yqy3-9a5X1fJPmaq-qswBdLetX7HOPE/edit?usp=sharing");
+  }
+  else if (semana === 4) {
+    agregarLink(
+      "Comparación de arquitecturas",
+      "https://docs.google.com/presentation/d/1K8m1-58YFCQ6ggqUJIG8J80w0UHy-duYH0YAJsVuy7Y/edit?usp=sharing"
+    );
+    agregarLink(
+      "Modelado de Bases de Datos ",
+      "https://docs.google.com/presentation/d/1A_cb7c5MBf6I_Nth8v29JUnbroU0tn7JPvvd5jcJJSA/edit?usp=sharing"
+    );
+}
+  else {
+    agregarLink("Material de la Semana " + semana, "#");
+  }
+
 }
 
-function mostrarArchivos(semana){
-    const lista = document.getElementById(`archivos-semana-${semana}`);
-    lista.style.display = "block";
-    lista.innerHTML = "Cargando archivos...";
+function agregarLink(nombre, url) {
+  const div = document.createElement("div");
+  div.className = "link";
+  div.innerHTML = `
+    <span>${nombre}</span>
+    <a href="${url}" target="_blank" class="ver-btn">👁 Ver</a>
+  `;
+  modalLinks.appendChild(div);
+}
 
-    fetch(`https://api.github.com/repos/${usuario}/${repo}/contents/Semana${semana}`)
-    .then(response => response.json())
-    .then(data => {
-        lista.innerHTML = "";
-        if(Array.isArray(data)){
-            data.forEach(archivo => {
-                // ✅ Solo mostrar archivos PDF
-                if(archivo.name.toLowerCase().endsWith(".pdf")){
-                    const li = document.createElement("li");
-
-                    const nombre = document.createElement("span");
-                    nombre.textContent = archivo.name;
-
-                    const acciones = document.createElement("div");
-
-                    // Botón Ver PDF (abre en nueva pestaña)
-                    const verBtn = document.createElement("a");
-                    verBtn.href = archivo.download_url;
-                    verBtn.className = "ver-btn";
-                    verBtn.target = "_blank"; // 🔥 abre en nueva pestaña
-                    verBtn.textContent = "Ver PDF";
-
-                    // Botón Descargar
-                    const downloadBtn = document.createElement("a");
-                    downloadBtn.href = archivo.download_url;
-                    downloadBtn.className = "download-btn";
-                    downloadBtn.textContent = "Descargar";
-                    downloadBtn.download = archivo.name;
-
-                    acciones.appendChild(verBtn);
-                    acciones.appendChild(downloadBtn);
-
-                    li.appendChild(nombre);
-                    li.appendChild(acciones);
-                    lista.appendChild(li);
-                }
-            });
-        } else {
-            lista.innerHTML = "No hay archivos PDF o carpeta no encontrada.";
-        }
-    })
-    .catch(err => {
-        lista.innerHTML = "Error al cargar archivos.";
-        console.error(err);
-    });
+function cerrarModal() {
+  modal.classList.remove("active");
 }
 </script>
-
 </body>
 </html>
-
 
 
